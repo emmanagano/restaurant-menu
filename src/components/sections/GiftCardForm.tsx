@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { ErrorText, TextAreaField, TextField } from "@/components/ui/Field";
 import { buttons, demoNotes, formLabels } from "@/content/microcopy";
 import { sendGiftCard } from "@/lib/actions/giftCard";
-import { manilaToday } from "@/lib/booking";
+import { manilaToday } from "@/lib/dates";
 import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 import { useNow } from "@/lib/useNow";

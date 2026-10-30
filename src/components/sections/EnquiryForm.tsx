@@ -6,7 +6,7 @@ import { SelectField, TextAreaField, TextField } from "@/components/ui/Field";
 import { formLabels } from "@/content/microcopy";
 import { submitEnquiry } from "@/lib/actions/enquiry";
 import { track } from "@/lib/analytics";
-import { manilaToday } from "@/lib/booking";
+import { manilaToday } from "@/lib/dates";
 import { useNow } from "@/lib/useNow";
 import type { EnquiryType } from "@/lib/validation/enquiry";
 

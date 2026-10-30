@@ -1,7 +1,7 @@
 "use server";
 
 import { formMessages } from "@/content/microcopy";
-import { manilaToday } from "@/lib/booking";
+import { manilaToday } from "@/lib/dates";
 import { withinRateLimit } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/request";
 import { createClient } from "@/lib/supabase/server";

@@ -1,4 +1,5 @@
 import { formMessages } from "@/content/microcopy";
+import { manilaToday } from "@/lib/dates";
 import { formatMinutes, manilaClock, type Hours } from "@/lib/hours";
 import {
   bookingSchema,
@@ -15,11 +16,6 @@ const toMinutes = (time: string) => {
   const [h, m] = time.split(":").map(Number);
   return h * 60 + m;
 };
-
-/** Today's date in Asia/Manila as YYYY-MM-DD. */
-export function manilaToday(now: Date) {
-  return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Manila" }).format(now);
-}
 
 const weekdayOf = (date: string) => new Date(`${date}T00:00:00Z`).getUTCDay();
 

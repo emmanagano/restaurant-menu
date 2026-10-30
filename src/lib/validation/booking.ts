@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { formMessages } from "@/content/microcopy";
 
+// The CSP blocks eval, which zod would otherwise try for speed. Keep it off wherever zod runs in the browser.
+z.config({ jitless: true });
+
 export const MAX_PARTY_SIZE = 12;
 
 export const PH_MOBILE = /^(?:\+?63|0)9\d{9}$/;
