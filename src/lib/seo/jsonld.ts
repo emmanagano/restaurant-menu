@@ -1,6 +1,7 @@
 import type { Faq, Location, MenuCategory } from "@/lib/content";
 import type { DayHours } from "@/lib/hours";
-import { siteUrl } from "@/lib/seo/site";
+import { footer } from "@/content/microcopy";
+import { siteName, siteUrl } from "@/lib/seo/site";
 
 const VEGETARIAN_DIET = "https://schema.org/VegetarianDiet";
 
@@ -90,5 +91,18 @@ export function faqJsonLd(faqs: Faq[]) {
       name: faq.question,
       acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
+  };
+}
+
+/** Site-wide organisation, rendered in the root layout. */
+export function organizationJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    url: siteUrl.toString(),
+    slogan: footer.tagline,
+    email: footer.email,
+    // TODO(content): logo and sameAs stay out until a logo file and real profiles exist.
   };
 }

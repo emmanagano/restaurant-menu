@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { JsonLd } from "@/components/ui/JsonLd";
+import { organizationJsonLd } from "@/lib/seo/jsonld";
 import { siteUrl } from "@/lib/seo/site";
 import "./globals.css";
 
@@ -32,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           Skip to main content
         </a>
+        <JsonLd data={organizationJsonLd()} />
         {children}
       </body>
     </html>
