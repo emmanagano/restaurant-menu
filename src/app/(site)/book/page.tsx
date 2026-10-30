@@ -29,8 +29,10 @@ export default async function BookPage() {
       <p className="mt-4 text-lead text-ink-muted">{bookingPage.intro}</p>
 
       <div className="mt-8">
-        {/* useSearchParams (for ?branch=) needs a Suspense boundary on a static page. */}
-        <Suspense fallback={<Card className="min-h-96" />}>
+        {/* useSearchParams (for ?branch=) needs a Suspense boundary on a static page.
+            The placeholder matches the measured height of the first step (45rem on mobile,
+            31rem from md up) so the footer doesn't jump when the form arrives. */}
+        <Suspense fallback={<Card className="min-h-181 md:min-h-124" />}>
           <BookingFlow
             locations={locations.map(({ slug, name, address, feature, hours }) => ({
               slug,
