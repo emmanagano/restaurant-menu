@@ -66,7 +66,7 @@ Three-line teaser of the founder story, then: Read our story →
 
 **8. Proof** — H2: What our guests say
 
-Stat row: **4.8** sample guest rating · **12** heirloom recipes · **2** dining rooms. Then three sample reviews (section 5).
+Stat row: **4.8** sample guest rating · **27** heirloom recipes · **2** dining rooms. Then three sample reviews (section 5).
 
 **9. Visit us** — H2: Find your nearest Uling
 
@@ -82,7 +82,7 @@ Sign-off: *Salamat* for stopping by. See you at the table. **\[Book a table\]**
 
 ## 3. Menu
 
-Prices in Philippine pesos. Tags: **S** signature · **H** spicy · **V** vegetarian · **PF** pork-free · **SF** contains seafood. Page intro: *Twelve heirloom recipes, a charcoal grill, and a lot of rice. Sharing is strongly encouraged.*
+Prices in Philippine pesos. Tags: **S** signature · **H** spicy · **V** vegetarian · **PF** pork-free · **SF** contains seafood. Page intro: *Twenty-seven heirloom recipes, a charcoal grill, and a lot of rice. Sharing is strongly encouraged.*
 
 ### Pulutan & starters
 
@@ -206,6 +206,8 @@ Street names and numbers are invented. Use map pins on public landmarks, or a st
 
 **Location page H1 pattern:** Uling Downtown, Kapampangan grill & bar in Sto. Rosario, San Fernando
 
+TODO(content): confirm the Dolores H1. Proposed: Uling Dolores, Kapampangan grill & bar in Dolores, San Fernando.
+
 ### About
 
 **H1:** About Uling, Kapampangan cooking from San Fernando
@@ -236,6 +238,10 @@ Use the founder story from section 1, then three short value blocks:
 **H1:** Contact Uling
 
 Questions, feedback or a story about your Lola's sisig? We read everything. Form: name, email, branch, message. Plus both branches' phone numbers and hello@uling.example.
+
+### Privacy, credits and pick-up
+
+TODO(content): copy for `/privacy` (with the short "About this concept" note), the `/credits` intro, and the "Order for pick-up" flow (items, prices, page) is not written yet.
 
 ### 404
 
@@ -336,10 +342,11 @@ Use free stock photos for most shots, your own phone photos for the Kapampangan 
 
 | Source | Best for | Watch out for |
 | --- | --- | --- |
-| AI image tools (Adobe Firefly is trained on licensed content and cleared for commercial use; Midjourney, ChatGPT and Ideogram also work) | Hero, dining rooms, chef and crowd scenes, hard-to-find Kapampangan dishes | Food that looks "off" (wrong garnish, extra fingers, melted text). Review every image and regenerate freely. Check each tool's terms. |
 | Your own photos | 4–6 signature dishes you cook or buy, ingredients, textures | Ask permission if you shoot inside a real restaurant, and don't show its branding |
 | Free stock (Unsplash, Pexels) | Textures, charcoal, banana leaves, generic Filipino spreads | Thin coverage of Kapampangan dishes, so many sites reuse the same shots. Read each license. |
 | Illustration and SVG | Section dividers, map, icons, 404, empty states | Keep one consistent line weight and palette |
+
+**No AI-generated images.** Use only free stock, Wikimedia Commons or the designer's own photos and illustration.
 
 **Never** use images from real restaurants' websites, Instagram or Google Maps listings.
 
@@ -349,7 +356,7 @@ Use free stock photos for most shots, your own phone photos for the Kapampangan 
 - Two angles per dish: overhead for spreads, 45° for bowls and drinks.
 - Props: dark wood, banana leaf, clay pots, enamel plates, calamansi, chilies.
 - Add steam or sizzle by shooting the moment the dish lands; a hand reaching in adds life.
-- Edit all shots with one preset so they match the AI images (warm, slightly low-key).
+- Edit all shots with one preset so they match the stock photos (warm, slightly low-key).
 
 ### Art direction
 

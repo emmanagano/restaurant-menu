@@ -1,0 +1,41 @@
+// Short UI strings from the content deck (section 5). Keep wording identical to the deck.
+
+export const buttons = {
+  book: "Book a table",
+  seeMenu: "See the menu",
+  orderPickup: "Order for pick-up",
+  planMenu: "Plan your menu",
+  enquireEvent: "Enquire about your event",
+  sendGiftCard: "Send a gift card",
+  directions: "Directions",
+  call: "Call",
+  bookHere: "Book here",
+  subscribe: "Subscribe",
+} as const;
+
+export const menuFilters = {
+  all: "All",
+  signature: "Signature",
+  spicy: "Spicy",
+  vegetarian: "Vegetarian",
+  "pork-free": "Pork-free",
+} as const;
+
+/** Words for the dish tags in the database. Never show the deck's letters alone. */
+export const dishTagLabels = {
+  signature: "Signature",
+  spicy: "Spicy",
+  vegetarian: "Vegetarian",
+  pork_free: "Pork-free",
+  seafood: "Contains seafood",
+} as const;
+
+export const a11y = {
+  skipLink: "Skip to main content",
+  openMenu: "Open menu",
+  closeMenu: "Close menu",
+  previousDish: "Previous dish",
+  nextDish: "Next dish",
+  floatingBook: "Book a table at Uling",
+  reducedMotionNote: "Animations are off because your device prefers reduced motion.",
+} as const;
