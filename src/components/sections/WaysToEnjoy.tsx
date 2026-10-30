@@ -2,13 +2,13 @@ import { BookButton, Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { buttons } from "@/content/microcopy";
 
-// TODO(content): "Order for pick-up" has no page in the deck or the page list yet. /pick-up is a placeholder.
+// TODO(content): "Order for pick-up" has no page in the deck or the page list yet, so the button goes to /menu until the pick-up flow is written.
 const ways = [
   { title: "Dine in", text: "Two dining rooms in San Fernando, open daily.", cta: "book" },
   {
     title: "Takeaway & pasalubong",
     text: "Tocino, longganisa, buro and sans rival to bring home.",
-    cta: { href: "/pick-up", label: buttons.orderPickup },
+    cta: { href: "/menu", label: buttons.orderPickup },
   },
   {
     title: "Catering",
