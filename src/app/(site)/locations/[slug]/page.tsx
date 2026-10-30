@@ -10,7 +10,9 @@ import { buttons } from "@/content/microcopy";
 import { locationCopy } from "@/content/locations";
 import { getLocation, getLocationSlugs } from "@/lib/content";
 import { breadcrumbJsonLd, restaurantJsonLd } from "@/lib/seo/jsonld";
+import { sitePhotos } from "@/lib/images";
 import { pageMetadata } from "@/lib/seo/metadata";
+import { siteUrl } from "@/lib/seo/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -42,7 +44,7 @@ export default async function LocationPage({ params }: Props) {
 
   return (
     <main id="main" className="mx-auto w-full max-w-page px-4 py-12">
-      <JsonLd data={restaurantJsonLd(location)} />
+      <JsonLd data={restaurantJsonLd(location, new URL(sitePhotos.heroDesktop, siteUrl).toString())} />
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", path: "/" },

@@ -6,7 +6,8 @@ import { StoryTeaser } from "@/components/sections/StoryTeaser";
 import { VisitUs } from "@/components/sections/VisitUs";
 import { WarmEnding } from "@/components/sections/WarmEnding";
 import { WaysToEnjoy } from "@/components/sections/WaysToEnjoy";
-import { getLocations, getRecipeCount, getSignatureDishes, getTestimonials } from "@/lib/content";
+import { getImageMap, getLocations, getRecipeCount, getSignatureDishes, getTestimonials } from "@/lib/content";
+import { sitePhotos } from "@/lib/images";
 import { pageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = pageMetadata({
@@ -17,16 +18,17 @@ export const metadata = pageMetadata({
 });
 
 export default async function Home() {
-  const [signature, recipeCount, locations, testimonials] = await Promise.all([
+  const [signature, recipeCount, locations, testimonials, images] = await Promise.all([
     getSignatureDishes(),
     getRecipeCount(),
     getLocations(),
     getTestimonials(),
+    getImageMap(),
   ]);
 
   return (
     <main id="main">
-      <Hero />
+      <Hero desktop={images[sitePhotos.heroDesktop]} mobile={images[sitePhotos.heroMobile]} />
       <section aria-label="Welcome" className="mx-auto w-full max-w-page px-4 py-16">
         <p className="max-w-prose text-lead">
           Pampanga has fed the Philippines for centuries. At Uling, we cook its greatest hits the old
@@ -36,8 +38,8 @@ export default async function Home() {
         </p>
       </section>
       <SignatureDishes dishes={signature} />
-      <PeakMoment />
-      <StoryTeaser />
+      <PeakMoment photo={images[sitePhotos.embers]} />
+      <StoryTeaser photo={images[sitePhotos.story]} />
       <WaysToEnjoy />
       <Proof recipeCount={recipeCount} diningRooms={locations.length} reviews={testimonials.slice(0, 3)} />
       <VisitUs locations={locations} />

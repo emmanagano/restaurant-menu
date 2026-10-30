@@ -3,8 +3,10 @@ import { PackageCards } from "@/components/sections/PackageCards";
 import { PageIntro } from "@/components/sections/PageIntro";
 import { Button } from "@/components/ui/Button";
 import { JsonLd } from "@/components/ui/JsonLd";
+import { Photo } from "@/components/ui/Photo";
 import { buttons } from "@/content/microcopy";
-import { getPackages } from "@/lib/content";
+import { getImageMap, getPackages } from "@/lib/content";
+import { sitePhotos } from "@/lib/images";
 import { breadcrumbJsonLd } from "@/lib/seo/jsonld";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -16,7 +18,8 @@ export const metadata = pageMetadata({
 });
 
 export default async function PrivateEventsPage() {
-  const packages = await getPackages("event");
+  const [packages, images] = await Promise.all([getPackages("event"), getImageMap()]);
+  const bodega = images[sitePhotos.bodega];
 
   return (
     <main id="main" className="mx-auto w-full max-w-page px-4 py-12">
@@ -32,6 +35,10 @@ export default async function PrivateEventsPage() {
       <div className="mt-6">
         <Button href="#enquiry">{buttons.enquireEvent}</Button>
       </div>
+
+      {bodega && (
+        <Photo image={bodega} sizes="(min-width: 1280px) 72rem, 100vw" className="mt-10 aspect-3/2 md:aspect-2/1" />
+      )}
 
       <section aria-labelledby="packages-heading" className="mt-16">
         <h2 id="packages-heading" className="text-h2">

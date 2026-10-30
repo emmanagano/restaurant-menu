@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { footer } from "@/content/microcopy";
 
@@ -10,12 +12,15 @@ const colors = {
   ember: "#241c17",
   cream: "#fbf6ee",
   creamMuted: "#d9cdbb",
-  glow: "#e8a33d",
 };
 
 const headline = footer.tagline.split(", ");
 
-/** Share image for every page: type and ember glow only, no photos and no logos. */
+// Read once at build time (this route is static). Photo credit: see supabase/migrations/*_add_launch_photos.sql.
+const embers = await readFile(join(process.cwd(), "public/images/embers.jpg"));
+const embersSrc = `data:image/jpeg;base64,${embers.toString("base64")}`;
+
+/** Share image for every page: the ember photo under a dark wash, plus the tagline. No logos. */
 export default function OpenGraphImage() {
   return new ImageResponse(
     (
@@ -28,12 +33,28 @@ export default function OpenGraphImage() {
           justifyContent: "space-between",
           padding: 72,
           color: colors.cream,
-          background: `linear-gradient(to top, ${colors.glow}59, ${colors.ember} 62%)`,
           backgroundColor: colors.ember,
         }}
       >
-        <div style={{ fontSize: 44, fontWeight: 700, letterSpacing: 2 }}>Uling</div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+        <img
+          src={embersSrc}
+          alt=""
+          width={size.width}
+          height={size.height}
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", objectFit: "cover" }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: `linear-gradient(to top, ${colors.ember}b3, ${colors.ember}e6 70%)`,
+          }}
+        />
+        <div style={{ position: "relative", fontSize: 44, fontWeight: 700, letterSpacing: 2 }}>Uling</div>
+        <div style={{ position: "relative", display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ display: "flex", flexDirection: "column", fontSize: 96, fontWeight: 700, lineHeight: 1.05 }}>
             {/* Break after the comma so "coals." never sits alone. */}
             <div>{`${headline[0]},`}</div>
@@ -43,7 +64,9 @@ export default function OpenGraphImage() {
             Modern Kapampangan grill &amp; bar in San Fernando, Pampanga
           </div>
         </div>
-        <div style={{ fontSize: 26, color: colors.creamMuted }}>A fictional restaurant: a web design concept</div>
+        <div style={{ position: "relative", fontSize: 26, color: colors.creamMuted }}>
+          A fictional restaurant: a web design concept
+        </div>
       </div>
     ),
     size,

@@ -22,7 +22,9 @@ const sourceNames: Record<string, string> = {
 };
 
 export default async function CreditsPage() {
-  const images = await getImages();
+  // One entry per source photo: the hero's desktop and mobile crops share a source.
+  const bySource = new Map((await getImages()).map((image) => [image.source_url ?? image.id, image]));
+  const images = [...bySource.values()];
 
   return (
     <main id="main" className="mx-auto w-full max-w-page px-4 py-12">

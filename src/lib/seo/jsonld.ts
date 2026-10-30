@@ -54,7 +54,7 @@ function openingHoursSpecification(hours: Record<number, DayHours>) {
   });
 }
 
-export function restaurantJsonLd(location: Location) {
+export function restaurantJsonLd(location: Location, fallbackImage?: string) {
   const hasGeo = location.lat !== null && location.lng !== null;
   return {
     "@context": "https://schema.org",
@@ -77,8 +77,9 @@ export function restaurantJsonLd(location: Location) {
     openingHoursSpecification: openingHoursSpecification(location.hours),
     acceptsReservations: true,
     hasMenu: new URL("/menu", siteUrl).toString(),
-    // TODO(content): image and sameAs stay out until a photo is logged and a profile exists.
-    ...(location.image && { image: location.image.path }),
+    // TODO(content): sameAs stays out until a real profile exists. The image is the shared hero photo
+    // until each branch has its own.
+    ...((location.image?.path ?? fallbackImage) && { image: location.image?.path ?? fallbackImage }),
   };
 }
 

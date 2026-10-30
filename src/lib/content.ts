@@ -150,3 +150,8 @@ export async function getImages(): Promise<Image[]> {
   if (error) throw new Error(`getImages: ${error.message}`);
   return data;
 }
+
+/** Logged images keyed by `path`. Pages place specific photos from this and skip any that aren't logged yet. */
+export async function getImageMap(): Promise<Record<string, Image>> {
+  return Object.fromEntries((await getImages()).map((image) => [image.path, image]));
+}
