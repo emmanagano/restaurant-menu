@@ -42,7 +42,9 @@ export function Header() {
         <nav aria-label="Main" className="hidden lg:block">
           <NavLinks orientation="row" />
         </nav>
-        <BookButton className="hidden lg:inline-flex" />
+        <div className="hidden lg:block">
+          <BookButton />
+        </div>
 
         <nav aria-label="Main mobile" className="lg:hidden">
           <MobileMenu>

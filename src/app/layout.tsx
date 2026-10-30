@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
+import { siteUrl } from "@/lib/seo/site";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -15,6 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: "Kapampangan Grill & Bar in San Fernando, Pampanga | Uling",
   description:
     "Charcoal-grilled sisig, kare-kare and carabao tapa in San Fernando, Pampanga. Heirloom Kapampangan recipes for family lunches and barkada nights. Book a table.",

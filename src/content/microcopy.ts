@@ -18,7 +18,7 @@ export const menuFilters = {
   signature: "Signature",
   spicy: "Spicy",
   vegetarian: "Vegetarian",
-  "pork-free": "Pork-free",
+  pork_free: "Pork-free",
 } as const;
 
 /** Words for the dish tags in the database. Never show the deck's letters alone. */
@@ -55,4 +55,13 @@ export const footer = {
     "Uling is a fictional restaurant created as a web design and development concept by Emma Nagano. All names, addresses, reviews and images are samples.",
   photoCredit:
     "Photography: Unsplash, Pexels, Wikimedia Commons contributors and the designer; illustrations original.",
+} as const;
+
+export const menuPage = {
+  filterGroupLabel: "Filter the menu",
+  intro:
+    "Twenty-seven heirloom recipes, a charcoal grill, and a lot of rice. Sharing is strongly encouraged.",
+  allergyNote: "Please tell us about allergies; our kitchen handles peanuts, shellfish and pork.",
+  // TODO(content): screen-reader status for the filter isn't in the deck. Confirm the wording.
+  status: (shown: number, total: number) => `Showing ${shown} of ${total}`,
 } as const;

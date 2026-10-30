@@ -92,3 +92,18 @@
     }
   }
 }
+
+/*
+ * Menu filter: dishes stay in the HTML; the active filter hides what doesn't match.
+ * Deliberately unlayered so it beats Tailwind utilities such as `flex` on the cards.
+ */
+[data-filter="signature"] [data-dish]:not([data-tags~="signature"]),
+[data-filter="spicy"] [data-dish]:not([data-tags~="spicy"]),
+[data-filter="vegetarian"] [data-dish]:not([data-tags~="vegetarian"]),
+[data-filter="pork_free"] [data-dish]:not([data-tags~="pork_free"]),
+[data-filter="signature"] [data-category]:not(:has([data-tags~="signature"])),
+[data-filter="spicy"] [data-category]:not(:has([data-tags~="spicy"])),
+[data-filter="vegetarian"] [data-category]:not(:has([data-tags~="vegetarian"])),
+[data-filter="pork_free"] [data-category]:not(:has([data-tags~="pork_free"])) {
+  display: none;
+}

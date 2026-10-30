@@ -82,6 +82,8 @@ Sign-off: *Salamat* for stopping by. See you at the table. **\[Book a table\]**
 
 ## 3. Menu
 
+TODO(content): the deck gives no H1 for the menu page. The site uses the keyword-map phrase "Kapampangan food menu" until you confirm.
+
 Prices in Philippine pesos. Tags: **S** signature · **H** spicy · **V** vegetarian · **PF** pork-free · **SF** contains seafood. Page intro: *Twenty-seven heirloom recipes, a charcoal grill, and a lot of rice. Sharing is strongly encouraged.*
 
 ### Pulutan & starters
