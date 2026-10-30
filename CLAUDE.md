@@ -40,7 +40,7 @@ src/
     (site)/             # public pages
     api/                # route handlers (only when a server action won't do)
   components/
-    ui/                 # primitives: Button, Card, Tag, Accordion, Stepper, Modal
+    ui/                 # primitives: Button, Card, Tag, Accordion, Stepper (Modal: not built yet, add when needed)
     sections/           # page sections: Hero, SignatureDishes, VisitUs…
   lib/
     supabase/           # server.ts, client.ts (via @supabase/ssr)
@@ -59,7 +59,7 @@ supabase/migrations/    # SQL migrations; the only way the schema changes
 
 - **Server Components by default.** Add `"use client"` only for interactivity (filters, stepper, carousel, motion), and keep those components small, as leaves.
 - All content (menu, hours, locations, FAQ) is rendered on the server into HTML. **Never fetch page content client-side.** Crawlers and no-JS users must see the full content.
-- Use static generation with revalidation (`revalidate`) for content pages. `/book` and the forms can be dynamic.
+- Use static generation with revalidation for content pages. This project runs Next 16 with `cacheComponents`, where `revalidate` and `dynamicParams` segment configs fail the build: put `"use cache"` + `cacheLife("hours")` in the data functions (`src/lib/content.ts`) instead. `/book` and the forms can be dynamic.
 - Use `generateStaticParams` for `/locations/[slug]`.
 
 ## Supabase rules
