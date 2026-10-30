@@ -2,6 +2,7 @@ import { PageIntro } from "@/components/sections/PageIntro";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { footer } from "@/content/microcopy";
 import { getImages } from "@/lib/content";
+import { licenseUrl } from "@/lib/images";
 import { breadcrumbJsonLd } from "@/lib/seo/jsonld";
 import { pageMetadata } from "@/lib/seo/metadata";
 
@@ -50,7 +51,16 @@ export default async function CreditsPage() {
                 {image.credit_line ?? [image.photographer, sourceNames[image.source]].filter(Boolean).join(", ")}
               </p>
               <p className="mt-1 text-small text-ink-muted">
-                {[sourceNames[image.source], image.license].filter(Boolean).join(" · ")}
+                {sourceNames[image.source]}
+                {image.license && " · "}
+                {image.license &&
+                  (licenseUrl(image.license) ? (
+                    <a href={licenseUrl(image.license)} target="_blank" rel="noopener noreferrer" className="underline">
+                      {image.license}
+                    </a>
+                  ) : (
+                    image.license
+                  ))}
               </p>
               {image.source_url && (
                 <a

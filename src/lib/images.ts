@@ -15,3 +15,13 @@ export const sitePhotos = {
   bodega: "/images/bodega.jpg",
   embers: "/images/embers.jpg",
 } as const;
+
+const licenseUrls: Record<string, string> = {
+  "CC BY-SA 4.0": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "CC BY 2.0": "https://creativecommons.org/licenses/by/2.0/",
+  CC0: "https://creativecommons.org/publicdomain/zero/1.0/",
+  "Pexels License": "https://www.pexels.com/license/",
+};
+
+/** Link to the text of a license, so credits can point at the terms they rely on. */
+export const licenseUrl = (license: string | null) => (license ? licenseUrls[license] : undefined);

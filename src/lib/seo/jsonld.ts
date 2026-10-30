@@ -1,6 +1,7 @@
 import type { Faq, Location, MenuCategory } from "@/lib/content";
 import type { DayHours } from "@/lib/hours";
 import { footer } from "@/content/microcopy";
+import { imageSrc } from "@/lib/images";
 import { siteName, siteUrl } from "@/lib/seo/site";
 
 const VEGETARIAN_DIET = "https://schema.org/VegetarianDiet";
@@ -31,6 +32,7 @@ export function menuJsonLd(menu: MenuCategory[]) {
         "@type": "MenuItem",
         name: dish.name,
         description: dish.description,
+        ...(dish.image && { image: new URL(imageSrc(dish.image.path), siteUrl).toString() }),
         offers: { "@type": "Offer", price: dish.price_php, priceCurrency: "PHP" },
         ...(dish.tags.includes("vegetarian") && { suitableForDiet: VEGETARIAN_DIET }),
       })),

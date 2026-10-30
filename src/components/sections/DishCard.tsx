@@ -28,11 +28,8 @@ export function DishCard({ dish, className }: { dish: Dish; className?: string }
           width={dish.image.width}
           height={dish.image.height}
           sizes="(min-width: 1024px) 24rem, (min-width: 768px) 50vw, 100vw"
-          className={
-            dish.slug === "halo-halo-kapampangan"
-              ? "aspect-4/5 w-full object-cover"
-              : "aspect-square w-full object-cover"
-          }
+          style={{ aspectRatio: `${dish.image.width} / ${dish.image.height}` }}
+          className="w-full object-cover"
         />
       )}
       <div className="flex flex-1 flex-col gap-3 p-5">
