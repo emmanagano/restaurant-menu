@@ -1,8 +1,8 @@
 "use server";
 
-import { headers } from "next/headers";
 import { formMessages } from "@/content/microcopy";
 import { withinRateLimit } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/request";
 import { createClient } from "@/lib/supabase/server";
 import { newsletterSchema, type NewsletterResult } from "@/lib/validation/newsletter";
 
@@ -17,11 +17,7 @@ export async function subscribeToNewsletter(
     return { ok: true, message: formMessages.newsletterSuccess };
   }
 
-  const requestHeaders = await headers();
-  const ip =
-    requestHeaders.get("x-nf-client-connection-ip") ??
-    requestHeaders.get("x-forwarded-for")?.split(",")[0].trim() ??
-    "unknown";
+  const ip = await getClientIp();
   if (!withinRateLimit(`newsletter:${ip}`)) {
     return { ok: false, errors: { form: [formMessages.rateLimited] } };
   }

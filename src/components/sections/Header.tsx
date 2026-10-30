@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { BookButton } from "@/components/ui/Button";
+import { FloatingBookButton } from "@/components/sections/FloatingBookButton";
 import { MobileMenu } from "@/components/sections/MobileMenu";
-import { a11y, nav } from "@/content/microcopy";
+import { nav } from "@/content/microcopy";
 
 const links = [
   { href: "/menu", label: nav.menu },
@@ -53,11 +54,7 @@ export function Header() {
         </nav>
       </div>
 
-      {/* Floating Book button on mobile */}
-      <BookButton
-        aria-label={a11y.floatingBook}
-        className="fixed bottom-4 right-4 z-40 shadow-card lg:hidden"
-      />
+      <FloatingBookButton />
     </header>
   );
 }

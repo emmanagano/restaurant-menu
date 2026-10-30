@@ -25,7 +25,7 @@ const hoursSchema = z.record(
   z.object({ open: z.string(), close: z.string() }).nullable(),
 );
 
-function parseHours(value: unknown): Hours {
+export function parseHours(value: unknown): Hours {
   const parsed = hoursSchema.parse(value);
   return Object.fromEntries(
     Object.entries(parsed).map(([day, hours]) => [Number(day), hours]),

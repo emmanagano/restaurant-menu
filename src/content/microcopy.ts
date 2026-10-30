@@ -75,4 +75,37 @@ export const formMessages = {
   rateLimited: "That's a lot of tries. Wait a minute and try again.",
   newsletterSuccess: "You're in. Watch your inbox for fiesta specials.",
   newsletterDuplicate: "You're already on the list. Masanting!",
+  invalidPhone: "Enter a PH mobile number, like 0917 123 4567.",
+  pastDate: "Pick today or a date ahead. We can't seat you yesterday.",
+  partyTooLarge: "For more than 12 guests, send a private event enquiry.",
+  noTimes: "That slot's full. Try 30 minutes earlier or later, or the other branch.",
+  // TODO(content): "pick" prompts aren't in the deck. Confirm the wording.
+  pick: (thing: string) => `Pick a ${thing}.`,
+} as const;
+
+export const bookingPage = {
+  intro:
+    "Pick a branch, a time and how many are coming. For groups over 12, send a private event enquiry instead.",
+  steps: ["Branch", "Date & time", "Party size", "Your details", "Confirm"],
+  demoNote: "Demo only: no real booking is made.",
+  confirmationTitle: (name: string) => `You\u2019re booked, ${name}!`,
+  confirmationText: (date: string, time: string, branch: string, email: string) =>
+    `We\u2019ll see you on ${date} at ${time} at ${branch}. A confirmation is on its way to ${email}.`,
+  lastSeating: (time: string) => `Last seating ${time}`,
+  // TODO(content): the labels below are functional UI strings the deck doesn't list. Confirm the wording.
+  stepStatus: (n: number, total: number, label: string) => `Step ${n} of ${total}: ${label}`,
+  back: "Back",
+  next: "Next",
+  confirm: "Confirm",
+  change: "Change",
+  fields: {
+    location: "Branch",
+    date: "Date",
+    time: "Time",
+    party_size: "Party size",
+    name: "Name",
+    email: "Email",
+    phone: "Phone",
+    notes: "Notes (optional)",
+  },
 } as const;
