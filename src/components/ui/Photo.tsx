@@ -8,10 +8,13 @@ export function Photo({
   image,
   sizes,
   className,
+  priority = false,
 }: {
   image: ImageRow;
   sizes: string;
   className?: string;
+  /** Set for the photo that is likely the page's largest element; everything else loads at low priority. */
+  priority?: boolean;
 }) {
   return (
     <Image
@@ -20,6 +23,7 @@ export function Photo({
       width={image.width}
       height={image.height}
       sizes={sizes}
+      {...(priority ? { loading: "eager", fetchPriority: "high" } : { fetchPriority: "low" })}
       className={cn("h-auto w-full rounded-card object-cover", className)}
     />
   );

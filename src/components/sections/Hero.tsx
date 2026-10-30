@@ -46,7 +46,7 @@ export function Hero({ desktop, mobile }: { desktop?: Image; mobile?: Image }) {
         <>
           <HeroPhoto desktop={desktop!} mobile={mobile!} />
           {/* Dark wash so the headline stays readable over the photo. */}
-          <div aria-hidden="true" className="absolute inset-0 bg-ember-dark/70 md:bg-linear-to-r md:from-ember-dark/90 md:via-ember-dark/65 md:to-ember-dark/20" />
+          <div aria-hidden="true" className="absolute inset-0 bg-ember-dark/80 md:bg-linear-to-r md:from-ember-dark/90 md:via-ember-dark/65 md:to-ember-dark/20" />
         </>
       )}
       <div className="relative mx-auto flex min-h-144 w-full max-w-page flex-col items-start justify-center gap-6 px-4 py-20 lg:min-h-168 lg:py-32">

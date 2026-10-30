@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsap";
 
 // Fixed positions (no Math.random) so server and client markup match.
 const EMBERS = Array.from({ length: 18 }, (_, i) => ({
@@ -11,50 +10,36 @@ const EMBERS = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 /**
- * The site's one "peak" moment: coals catch and embers rise as the section scrolls in.
- * Only transform and opacity animate. With reduced motion (or no JS) the glow and embers stay still.
+ * Glow and embers, server-rendered as a still picture (also what reduced-motion and no-JS users see).
+ * The GSAP motion sits below the fold, so it is only downloaded once the section is near the viewport.
  */
 export function Embers() {
   const root = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const el = root.current;
-    if (!el) return;
+    // With reduced motion nothing animates, so there is no reason to download GSAP at all.
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const mm = gsap.matchMedia();
-    mm.add("(prefers-reduced-motion: no-preference)", () => {
-      const embers = gsap.utils.toArray<HTMLElement>("[data-ember]", el);
-      const glow = el.querySelector("[data-glow]");
-      gsap.set(embers, { opacity: 0 });
-      gsap.set(glow, { opacity: 0.2 });
+    let stop: (() => void) | undefined;
+    let unmounted = false;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        import("@/lib/embers-motion").then(({ startEmbers }) => {
+          if (!unmounted) stop = startEmbers(el);
+        });
+      },
+      { rootMargin: "600px 0px" },
+    );
+    observer.observe(el);
 
-      // Everything is built paused here so it belongs to this context and is reverted on unmount.
-      const ignite = gsap.to(glow, { opacity: 1, duration: 1.8, ease: "power2.out", paused: true });
-      const risers = embers.map((ember, i) => {
-        const duration = gsap.utils.random(3, 6);
-        return gsap
-          .timeline({ paused: true, repeat: -1, delay: i * 0.25 })
-          .fromTo(ember, { y: 0, x: 0, opacity: 0 }, { opacity: 1, duration: 0.6 })
-          .to(
-            ember,
-            { y: -el.clientHeight * gsap.utils.random(0.5, 0.95), x: gsap.utils.random(-40, 40), duration, ease: "none" },
-            0,
-          )
-          .to(ember, { opacity: 0, duration: duration * 0.4 }, duration * 0.6);
-      });
-
-      ScrollTrigger.create({
-        trigger: el,
-        start: "top 75%",
-        once: true,
-        onEnter: () => {
-          ignite.play();
-          risers.forEach((riser) => riser.play());
-        },
-      });
-    });
-
-    return () => mm.revert();
+    return () => {
+      unmounted = true;
+      observer.disconnect();
+      stop?.();
+    };
   }, []);
 
   return (

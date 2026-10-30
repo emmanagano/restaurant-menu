@@ -37,7 +37,12 @@ export default async function PrivateEventsPage() {
       </div>
 
       {bodega && (
-        <Photo image={bodega} sizes="(min-width: 1280px) 72rem, 100vw" className="mt-10 aspect-3/2 md:aspect-2/1" />
+        <Photo
+          image={bodega}
+          sizes="(min-width: 1280px) 72rem, 100vw"
+          priority
+          className="mt-10 aspect-3/2 md:aspect-2/1"
+        />
       )}
 
       <section aria-labelledby="packages-heading" className="mt-16">

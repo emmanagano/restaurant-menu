@@ -13,8 +13,8 @@ export function PeakMoment({ photo }: { photo?: ImageRow }) {
       {photo && (
         <>
           {/* Texture only: the heading and line say everything, so the alt text is empty. */}
-          <Image src={imageSrc(photo.path)} alt="" fill sizes="100vw" className="object-cover" />
-          <div aria-hidden="true" className="absolute inset-0 bg-ember-dark/80" />
+          <Image src={imageSrc(photo.path)} alt="" fill sizes="100vw" fetchPriority="low" className="object-cover" />
+          <div aria-hidden="true" className="absolute inset-0 bg-ember-dark/85" />
         </>
       )}
       <Embers />
