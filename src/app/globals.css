@@ -81,6 +81,11 @@
     outline-offset: 3px;
   }
 
+  /* Green rings fail 3:1 on dark surfaces, so use the light text colour there. */
+  [data-surface="dark"] :focus-visible {
+    outline-color: var(--color-on-dark);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

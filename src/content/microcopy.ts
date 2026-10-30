@@ -39,3 +39,20 @@ export const a11y = {
   floatingBook: "Book a table at Uling",
   reducedMotionNote: "Animations are off because your device prefers reduced motion.",
 } as const;
+
+export const nav = {
+  menu: "Menu",
+  book: "Book",
+  locations: "Locations",
+  cateringEvents: "Catering & Events",
+  giftCards: "Gift Cards",
+} as const;
+
+export const footer = {
+  tagline: "Kapampangan, over the coals.",
+  email: "hello@uling.example",
+  disclaimer:
+    "Uling is a fictional restaurant created as a web design and development concept by Emma Nagano. All names, addresses, reviews and images are samples.",
+  photoCredit:
+    "Photography: Unsplash, Pexels, Wikimedia Commons contributors and the designer; illustrations original.",
+} as const;

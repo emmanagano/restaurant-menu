@@ -47,9 +47,13 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
 }
 
 /** The one primary action on every page. */
-export function BookButton({ className, children }: { className?: string; children?: ReactNode }) {
+export function BookButton({
+  className,
+  children,
+  ...rest
+}: { className?: string; children?: ReactNode } & Pick<ComponentProps<"a">, "aria-label">) {
   return (
-    <Button href="/book" variant="book" className={className}>
+    <Button href="/book" variant="book" className={className} {...rest}>
       {children ?? buttons.book}
     </Button>
   );
