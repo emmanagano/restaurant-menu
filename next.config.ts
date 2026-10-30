@@ -58,6 +58,9 @@ const nextConfig: NextConfig = {
       : [],
   },
   cacheComponents: true,
+  // Explicit false keeps today's prefetching and silences the unset warning. true gave soft 404s on
+  // unknown /locations/[slug] (see the project notes), so re-test those before changing it.
+  partialPrefetching: false,
   turbopack: {
     rules: {
       "*.css": {
