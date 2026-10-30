@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { locationCopy } from "./src/content/locations";
 
 const supabaseHost = process.env.NEXT_PUBLIC_SUPABASE_URL
   ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
@@ -32,7 +33,21 @@ const securityHeaders = [
   { key: "X-Frame-Options", value: "DENY" },
 ];
 
+// An unknown /locations/[slug] that throws notFound() reaches the browser as a 404 with an empty HTML
+// body (Next 16.4 prerenders it as an error shell). Sending it to a path that doesn't exist renders the
+// global 404 page on the server instead, which is what any other unmatched URL gets.
+const knownLocations = Object.keys(locationCopy).join("|");
+
 const nextConfig: NextConfig = {
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: `/locations/:slug((?!(?:${knownLocations})$)[^/]+)`, destination: "/not-found-rewrite" },
+      ],
+      afterFiles: [],
+      fallback: [],
+    };
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
