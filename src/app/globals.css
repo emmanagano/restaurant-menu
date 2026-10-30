@@ -23,6 +23,9 @@
   --color-leaf: #3a5a3c;
   --color-line: #8a7a6b;
 
+  /* Warm light for the ember moment. Not the accent. */
+  --color-glow: #e8a33d;
+
   /* Accent: the "Book a table" CTA only */
   --color-book: #b8400c;
   --color-book-ink: #fbf6ee;

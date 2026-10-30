@@ -1,9 +1,47 @@
-export default function Home() {
+import { Hero } from "@/components/sections/Hero";
+import { PeakMoment } from "@/components/sections/PeakMoment";
+import { Proof } from "@/components/sections/Proof";
+import { SignatureDishes } from "@/components/sections/SignatureDishes";
+import { StoryTeaser } from "@/components/sections/StoryTeaser";
+import { VisitUs } from "@/components/sections/VisitUs";
+import { WarmEnding } from "@/components/sections/WarmEnding";
+import { WaysToEnjoy } from "@/components/sections/WaysToEnjoy";
+import { getLocations, getRecipeCount, getSignatureDishes, getTestimonials } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo/metadata";
+
+export const metadata = pageMetadata({
+  title: "Kapampangan Grill & Bar in San Fernando, Pampanga | Uling",
+  description:
+    "Charcoal-grilled sisig, kare-kare and carabao tapa in San Fernando, Pampanga. Heirloom Kapampangan recipes for family lunches and barkada nights. Book a table.",
+  path: "/",
+});
+
+export default async function Home() {
+  const [signature, recipeCount, locations, testimonials] = await Promise.all([
+    getSignatureDishes(),
+    getRecipeCount(),
+    getLocations(),
+    getTestimonials(),
+  ]);
+
   return (
-    <main id="main" className="mx-auto w-full max-w-page px-4 py-12">
-      <h1 className="text-h2">
-        Modern Kapampangan grill &amp; bar in San Fernando, Pampanga
-      </h1>
+    <main id="main">
+      <Hero />
+      <section aria-label="Welcome" className="mx-auto w-full max-w-page px-4 py-16">
+        <p className="max-w-prose text-lead">
+          Pampanga has fed the Philippines for centuries. At Uling, we cook its greatest hits the old
+          way, over glowing charcoal, and plate them like it&apos;s a fiesta every night. Sisig that
+          still sizzles. Kare-kare with peanut sauce we grind ourselves. Halo-halo made with carabao
+          milk. <em>Mangan ta na!</em> Let&apos;s eat.
+        </p>
+      </section>
+      <SignatureDishes dishes={signature} />
+      <PeakMoment />
+      <StoryTeaser />
+      <WaysToEnjoy />
+      <Proof recipeCount={recipeCount} diningRooms={locations.length} reviews={testimonials.slice(0, 3)} />
+      <VisitUs locations={locations} />
+      <WarmEnding />
     </main>
   );
 }

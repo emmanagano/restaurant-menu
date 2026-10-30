@@ -84,7 +84,8 @@ export async function getLocations(): Promise<Location[]> {
   const { data, error } = await createClient()
     .from("locations")
     .select("*, image:images(*)")
-    .order("name");
+    // Deck order puts Uling Downtown first. A `sort` column would be sturdier.
+    .order("name", { ascending: false });
   if (error) throw new Error(`getLocations: ${error.message}`);
   return data.map(toLocation);
 }

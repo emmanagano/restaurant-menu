@@ -11,6 +11,8 @@ export const buttons = {
   call: "Call",
   bookHere: "Book here",
   subscribe: "Subscribe",
+  buyGiftCard: "Buy a gift card",
+  enquire: "Enquire",
 } as const;
 
 export const menuFilters = {
@@ -64,4 +66,13 @@ export const menuPage = {
   allergyNote: "Please tell us about allergies; our kitchen handles peanuts, shellfish and pork.",
   // TODO(content): screen-reader status for the filter isn't in the deck. Confirm the wording.
   status: (shown: number, total: number) => `Showing ${shown} of ${total}`,
+} as const;
+
+export const formMessages = {
+  required: (field: string) => `Please add your ${field}.`,
+  invalidEmail: "That email doesn't look right. Check for typos?",
+  serverError: "Something went wrong on our side. Try again, or call us.",
+  rateLimited: "That's a lot of tries. Wait a minute and try again.",
+  newsletterSuccess: "You're in. Watch your inbox for fiesta specials.",
+  newsletterDuplicate: "You're already on the list. Masanting!",
 } as const;

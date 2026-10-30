@@ -36,7 +36,8 @@ function window(hours: Hours, day: number) {
   return { open, close };
 }
 
-export function isOpenNow(hours: Hours, now = new Date()): OpenStatus {
+/** Day of week (0 = Sunday) and minutes since midnight, in Asia/Manila. */
+export function manilaClock(now: Date) {
   const parts = new Intl.DateTimeFormat("en-US", {
     timeZone: "Asia/Manila",
     weekday: "short",
@@ -45,8 +46,14 @@ export function isOpenNow(hours: Hours, now = new Date()): OpenStatus {
     hourCycle: "h23",
   }).formatToParts(now);
   const get = (type: string) => parts.find((p) => p.type === type)!.value;
-  const day = DAY_NAMES.indexOf(get("weekday"));
-  const mins = Number(get("hour")) * 60 + Number(get("minute"));
+  return {
+    day: DAY_NAMES.indexOf(get("weekday")),
+    mins: Number(get("hour")) * 60 + Number(get("minute")),
+  };
+}
+
+export function isOpenNow(hours: Hours, now = new Date()): OpenStatus {
+  const { day, mins } = manilaClock(now);
 
   const today = window(hours, day);
   if (today && mins >= today.open && mins < today.close) {
@@ -60,4 +67,45 @@ export function isOpenNow(hours: Hours, now = new Date()): OpenStatus {
   }
 
   return { open: false };
+}
+
+/** Status labels from the content deck: "Open now · Closes at 10 PM", "Opens at 11 AM", "Closed today". */
+export function getHoursStatus(hours: Hours, now = new Date()) {
+  const { day, mins } = manilaClock(now);
+  const status = isOpenNow(hours, now);
+  if (status.open) {
+    return { day, label: `Open now · Closes at ${formatMinutes(status.closesAt)}` };
+  }
+  const today = window(hours, day);
+  if (today && mins < today.open) {
+    return { day, label: `Opens at ${formatMinutes(today.open)}` };
+  }
+  return { day, label: "Closed today" };
+}
+
+const WEEK_ORDER = [1, 2, 3, 4, 5, 6, 0];
+
+/** Consecutive days with the same hours, Monday first: "Mon–Thu", "Fri–Sat", "Sun" or "Daily". */
+export function groupHours(hours: Hours) {
+  const rangeOf = (day: number) => {
+    const h = hours[day];
+    return h ? formatRange(h) : "Closed";
+  };
+  const groups: { days: number[]; range: string }[] = [];
+  for (const day of WEEK_ORDER) {
+    const range = rangeOf(day);
+    const last = groups[groups.length - 1];
+    if (last && last.range === range) last.days.push(day);
+    else groups.push({ days: [day], range });
+  }
+  return groups.map(({ days, range }) => ({
+    days,
+    range,
+    label:
+      days.length === 7
+        ? "Daily"
+        : days.length === 1
+          ? DAY_NAMES[days[0]]
+          : `${DAY_NAMES[days[0]]}–${DAY_NAMES[days[days.length - 1]]}`,
+  }));
 }

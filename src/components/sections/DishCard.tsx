@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { DishTag, type DishTagKey } from "@/components/ui/Tag";
 import type { Dish } from "@/lib/content";
+import { cn } from "@/lib/cn";
 import { formatPrice } from "@/lib/format";
 import { imageSrc } from "@/lib/images";
 
@@ -14,12 +15,12 @@ export function dishTagKeys(dish: Dish): DishTagKey[] {
   return TAG_ORDER.filter((key) => keys.has(key));
 }
 
-export function DishCard({ dish }: { dish: Dish }) {
+export function DishCard({ dish, className }: { dish: Dish; className?: string }) {
   const tags = dishTagKeys(dish);
   const alt = dish.image?.alt ?? dish.alt ?? "";
 
   return (
-    <Card as="li" data-dish data-tags={tags.join(" ")} className="flex flex-col">
+    <Card as="li" data-dish data-tags={tags.join(" ")} className={cn("flex flex-col", className)}>
       {dish.image && (
         <Image
           src={imageSrc(dish.image.path)}

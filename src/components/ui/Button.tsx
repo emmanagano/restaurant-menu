@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { buttons } from "@/content/microcopy";
+import { TrackedButton } from "@/components/ui/TrackedButton";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "secondary" | "book";
+export type Variant = "primary" | "secondary" | "outline-light" | "book";
 
 const base =
   "inline-flex min-h-tap min-w-tap items-center justify-center rounded-pill px-6 py-3 text-center text-body font-semibold";
@@ -11,6 +12,7 @@ const base =
 const variants: Record<Variant, string> = {
   primary: "bg-ember-dark text-on-dark hover:bg-leaf",
   secondary: "border-2 border-ink text-ink hover:bg-surface",
+  "outline-light": "border-2 border-on-dark text-on-dark hover:bg-on-dark hover:text-ink",
   // The accent colour is reserved for the "Book a table" CTA.
   book: "bg-book text-book-ink hover:brightness-95",
 };
@@ -46,15 +48,15 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   );
 }
 
-/** The one primary action on every page. */
+/** The one primary action on every page. Sends `book_click` when pressed. */
 export function BookButton({
   className,
   children,
   ...rest
 }: { className?: string; children?: ReactNode } & Pick<ComponentProps<"a">, "aria-label">) {
   return (
-    <Button href="/book" variant="book" className={className} {...rest}>
+    <TrackedButton href="/book" variant="book" event="book_click" className={className} {...rest}>
       {children ?? buttons.book}
-    </Button>
+    </TrackedButton>
   );
 }

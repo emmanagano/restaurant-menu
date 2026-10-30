@@ -68,16 +68,19 @@ export async function Footer() {
       <div className="border-t border-line">
         <div className="mx-auto w-full max-w-page space-y-2 px-4 py-6 text-small text-on-dark-muted">
           <p>{footer.disclaimer}</p>
-          <p>
-            {footer.photoCredit}{" "}
-            <Link href="/credits" className="underline">
-              Credits
-            </Link>
-            {" · "}
-            <Link href="/privacy" className="underline">
-              Privacy
-            </Link>
-          </p>
+          <p>{footer.photoCredit}</p>
+          <ul className="flex gap-4">
+            <li>
+              <Link href="/credits" className={`${linkClass} underline`}>
+                Credits
+              </Link>
+            </li>
+            <li>
+              <Link href="/privacy" className={`${linkClass} underline`}>
+                Privacy
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>
