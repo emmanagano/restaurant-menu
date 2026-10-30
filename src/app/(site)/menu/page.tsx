@@ -38,7 +38,7 @@ export default async function MenuPage() {
       />
 
       {/* TODO(content): the deck has no menu H1. "Kapampangan food menu" is the keyword-map phrase. */}
-      <h1 className="text-h1">Kapampangan food menu</h1>
+      <h1 className="text-title">Kapampangan food menu</h1>
       <p className="mt-4 max-w-prose text-lead text-ink-muted">{menuPage.intro}</p>
 
       <div className="mt-8">

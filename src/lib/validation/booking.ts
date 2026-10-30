@@ -3,7 +3,7 @@ import { formMessages } from "@/content/microcopy";
 
 export const MAX_PARTY_SIZE = 12;
 
-const PH_MOBILE = /^(?:\+?63|0)9\d{9}$/;
+export const PH_MOBILE = /^(?:\+?63|0)9\d{9}$/;
 
 const isRealDate = (value: string) => {
   const parsed = new Date(`${value}T00:00:00Z`);

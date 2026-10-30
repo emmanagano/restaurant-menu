@@ -81,6 +81,9 @@ export const formMessages = {
   noTimes: "That slot's full. Try 30 minutes earlier or later, or the other branch.",
   // TODO(content): "pick" prompts aren't in the deck. Confirm the wording.
   pick: (thing: string) => `Pick a ${thing}.`,
+  enquirySent: "Salamat! We'll reply within one working day.",
+  // TODO(content): the deck has no gift card confirmation. Only the demo note is from the deck.
+  giftCardSent: "Thank you! Your gift card is on its way.",
 } as const;
 
 export const bookingPage = {
@@ -108,4 +111,29 @@ export const bookingPage = {
     phone: "Phone",
     notes: "Notes (optional)",
   },
+} as const;
+
+// TODO(content): form field labels aren't in the deck except where noted. Confirm the wording.
+export const formLabels = {
+  name: "Name",
+  email: "Email",
+  phone: "Phone",
+  eventDate: "Event date",
+  guests: "Guests",
+  location: "Location",
+  budget: "Budget",
+  message: "Message",
+  branch: "Branch",
+  recipientName: "Recipient name",
+  recipientEmail: "Recipient email",
+  giftMessage: "Your message",
+  sendDate: "Send date",
+  amount: "Amount",
+  custom: "Custom",
+  customAmount: "Custom amount (\u20b1)",
+  sendMessage: "Send message",
+} as const;
+
+export const demoNotes = {
+  giftCard: "Demo only: no real payment is taken.",
 } as const;

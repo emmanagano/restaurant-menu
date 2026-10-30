@@ -25,7 +25,7 @@ export default async function BookPage() {
           { name: "Book a table", path: "/book" },
         ])}
       />
-      <h1 className="text-h1">Book a table at Uling, San Fernando</h1>
+      <h1 className="text-title">Book a table at Uling, San Fernando</h1>
       <p className="mt-4 text-lead text-ink-muted">{bookingPage.intro}</p>
 
       <div className="mt-8">

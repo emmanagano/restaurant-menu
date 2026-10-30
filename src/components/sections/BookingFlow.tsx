@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { useRef, useState, useTransition, type ReactNode } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { ErrorText, inputClass } from "@/components/ui/Field";
 import { Stepper } from "@/components/ui/Stepper";
 import { bookingPage, buttons, formMessages } from "@/content/microcopy";
 import { bookTable } from "@/lib/actions/booking";
@@ -31,20 +32,6 @@ const EMPTY: Values = { location: "", date: "", time: "", party_size: "", name: 
 /** Fields on each step; the last step (Confirm) only reviews and submits. */
 const STEP_FIELDS: BookingField[][] = [["location"], ["date", "time"], ["party_size"], ["name", "email", "phone", "notes"], []];
 const LAST_STEP = STEP_FIELDS.length - 1;
-
-const inputClass =
-  "min-h-tap w-full rounded-control border-2 border-ink bg-canvas px-4 text-body text-ink";
-
-function ErrorText({ id, children }: { id: string; children: ReactNode }) {
-  return (
-    <p id={id} className="mt-2 flex items-start gap-2 font-semibold">
-      <svg aria-hidden="true" viewBox="0 0 24 24" className="mt-1 size-5 shrink-0 fill-none stroke-current stroke-2">
-        <path d="M12 8v5m0 3h.01M10.3 4.5 2.8 18a2 2 0 0 0 1.7 3h15a2 2 0 0 0 1.7-3L13.7 4.5a2 2 0 0 0-3.4 0Z" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      <span>{children}</span>
-    </p>
-  );
-}
 
 function Check() {
   return (
